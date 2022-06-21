@@ -20,11 +20,11 @@ const SideMenu = (props) => {
         {/* 随便放点图 */}
         {/* <img src={} width='28' height='28' style={{ marginBottom: 12 }}/> */}
         {/* <img src={} height='14'/> */}
-        <button className='y-side-menu-fold-button' onClick={() => setFold(!fold)}><DownOutlined/></button>
+        <button className='y-side-menu-fold-button' onClick={() => {console.log(fold);setFold(!fold)}}><DownOutlined/></button>
       </div>
       <hr className='y-side-menu-div'/>
       <div className='y-side-menu-content'>
-        {routes.map(item => <Menu item={item} fold={fold} setActiveItem={setActiveItem} setStyle={setStyle}/>)}
+        {routes.map((item,idx) => <Menu item={item} fold={fold} key={idx} setActiveItem={setActiveItem} setStyle={setStyle}/>)}
         {fold && <BesideMenu itemList={activeItem} style={style}/>}
       </div>
     </section>
@@ -76,7 +76,7 @@ const Menu = (props) => {
       {!fold && <DownOutlined className={classNames('y-side-menu-fold-arrow', { rotate: !spread })}/>}
     </div>
     {<div className={classNames('y-side-menu-item-children', { fold: !spread })} style={{ height: `${!spread ? 0 : 62 * children.length}px`, transition: 'height .3s' }}>
-      {children.map(i => <MenuItem item={i}/>)}
+      {children.map((i,idx) => <MenuItem item={i} key={idx}/>)}
     </div>}
   </div>
 }
